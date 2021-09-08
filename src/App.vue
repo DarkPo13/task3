@@ -38,8 +38,21 @@ export default {
     this.getTimeDetails().then((timeDetails) => {
       this.addTime(timeDetails);
     });
+    setInterval(this.setTime, 1000);
   },
   methods: {
+    
+        changeTime(timer){
+          const addSeconds = timer.date.getSeconds() + 1;
+          const newTime = timer.date.setSeconds(addSeconds);
+          timer.date = new Date(newTime);
+          return timer;
+        },
+
+        setTime(){
+          this.times= this.times.map(time=>this.changeTime(time));
+        },
+
     isExist(time){
       let check = false;
       this.times.forEach(timeInArray => {

@@ -14,13 +14,13 @@
 </template>
 
 <script>
-import timeDetails from "@/mixins/timeDetails.js";
+//import timeDetails from "@/mixins/timeDetails.js";
 export default {
-      mixins: [timeDetails],
+      //mixins: [timeDetails],
     name:"Timer",
     data(){
 return{
-    zone:this.timerZone
+    //zone:this.timerZone
 }
     },
     props:{
@@ -29,31 +29,35 @@ return{
         indexOfZone:Number
     },
     mounted(){
-        setInterval(this.changeTime,1000);
+        //setInterval(this.setTime,1000);
     },
     methods:{
-        changeTime(){
+
+
+        /*changeTime(){
             this.getTimeDetails().then((timeDetails) => {
                     this.timer.seconds = timeDetails.seconds;
                      this.timer.minutes = timeDetails.minutes;
                       this.timer.hours = timeDetails.hours;
     });
-    },
+    },*/
        deleteZone(){
         this.$emit("delete",this.indexOfZone)
         },
         
     },
     computed:{
+
     hours() {
-      return this.timer.hours
+      return this.timer.date.getHours()
     },
     minutes() {
-      return this.timer.minutes
+      return this.timer.date.getMinutes()
     },
     seconds() {
-      return this.timer.seconds
+      return this.timer.date.getSeconds()
     },
+
     },
 }
 </script>
